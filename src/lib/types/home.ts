@@ -5,6 +5,11 @@ export type BrandLogo = {
   height: number; // intrinsic height for next/image
 };
 
+export type Achievement = {
+  title: string;
+  subtitle: string; 
+};
+
 export interface Testimonial {
   id: number;
   content: string;
