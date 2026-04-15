@@ -9,7 +9,7 @@ interface TestimonialItemProps {
 const TestimonialCard: React.FC<TestimonialItemProps> = ({
   testimonialData,
 }) => {
-  const { id, content, imageUrl, name, role } = testimonialData;
+  const { content, imageUrl, name, role } = testimonialData;
 
   return (
     <div
