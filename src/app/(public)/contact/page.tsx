@@ -100,7 +100,7 @@ function CenteredSection({ children }: { children: React.ReactNode }) {
 }
 
 // ----------------------
-// Priority UI
+// Priority UI - PillTab is now defined inside PriorityTabs to avoid export issues
 // ----------------------
 interface PillTabProps {
   label: string;
@@ -110,106 +110,107 @@ interface PillTabProps {
   items?: Array<[string, string, string]>;
 }
 
-const cardBase = cn(
-  "relative rounded-xl h-fit border-2 border-black bg-white text-black",
-  "w-full text-left p-6 md:p-8",
-);
-
-export function PillTab({
-  label,
-  subtitle = "FULL IDENTITY SYSTEMS",
-  isOpen = false,
-  onBookNow,
-  items = [
-    ["Full Brand Identity System", "$4,000", "+"],
-    ["Brand Strategy", "$2,500", "+"],
-    ["Visual Identity", "$2,000", "+"],
-    ["Brand Naming", "$1,000", ""],
-    ["Logo Only (Side Hustle)", "$1,000", ""],
-    ["Identity Facelift", "$1,500", "+"],
-  ],
-}: PillTabProps) {
-  const [expanded, setExpanded] = React.useState(false);
-  const panelId = `${label.replace(/\s+/g, "-").toLowerCase()}-panel`;
-
-  return (
-    <article className={cardBase}>
-      {/* Expand button */}
-      <button
-        type="button"
-        aria-expanded={expanded}
-        aria-controls={panelId}
-        onClick={() => setExpanded((v) => !v)}
-        aria-label={expanded ? "Collapse" : "Expand"}
-        className="absolute right-4 top-4 inline-grid place-items-center h-9 w-9 rounded-full border-2 border-black bg-white text-black"
-      >
-        <svg
-          viewBox="0 0 20 20"
-          width="20"
-          height="20"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-        >
-          <line x1="4" y1="10" x2="16" y2="10" />
-          {!expanded && <line x1="10" y1="4" x2="10" y2="16" />}
-        </svg>
-      </button>
-
-      {/* Header */}
-      <div className="pr-12">
-        <h3 className="text-2xl md:text-3xl font-extrabold uppercase">
-          {label}
-        </h3>
-        <p className="mt-1 text-sm md:text-base text-neutral-600 uppercase">
-          {subtitle}
-        </p>
-      </div>
-
-      {/* Expanded */}
-      <div id={panelId} hidden={!expanded} className="mt-6">
-        <p className="leading-relaxed">
-          Choose what you need — from strategy to full identity systems.
-        </p>
-
-        <ul className="mt-3 border-t-2 border-black pt-3">
-          {items.map(([item, price, plus]) => (
-            <li
-              key={item}
-              className="flex justify-between py-2 text-sm md:text-base"
-            >
-              <span>{item}</span>
-              <span className="font-semibold">
-                {price}
-                {plus}
-              </span>
-            </li>
-          ))}
-        </ul>
-
-        {/* Book */}
-        <button
-          type="button"
-          aria-haspopup="dialog"
-          aria-expanded={isOpen}
-          onClick={onBookNow}
-          className={cn(
-            "mt-6 w-full px-5 py-3 inline-flex items-center justify-center gap-1",
-            "rounded-md border-2 border-black bg-white hover:bg-black hover:text-white",
-            "font-semibold",
-          )}
-        >
-          BOOK NOW <ArrowUpRight size={18} />
-        </button>
-      </div>
-
-      {!expanded && <div className="mt-8 h-28" />}
-    </article>
-  );
-}
-
 function PriorityTabs({ onOpen }: { onOpen: (k: PriorityKey) => void }) {
   const [openKey, setOpenKey] = React.useState<PriorityKey | null>("event");
+
+  const cardBase = cn(
+    "relative rounded-xl h-fit border-2 border-black bg-white text-black",
+    "w-full text-left p-6 md:p-8",
+  );
+
+  // PillTab is now defined inside PriorityTabs (not exported)
+  const PillTab = ({
+    label,
+    subtitle = "FULL IDENTITY SYSTEMS",
+    isOpen = false,
+    onBookNow,
+    items = [
+      ["Full Brand Identity System", "$4,000", "+"],
+      ["Brand Strategy", "$2,500", "+"],
+      ["Visual Identity", "$2,000", "+"],
+      ["Brand Naming", "$1,000", ""],
+      ["Logo Only (Side Hustle)", "$1,000", ""],
+      ["Identity Facelift", "$1,500", "+"],
+    ],
+  }: PillTabProps) => {
+    const [expanded, setExpanded] = React.useState(false);
+    const panelId = `${label.replace(/\s+/g, "-").toLowerCase()}-panel`;
+
+    return (
+      <article className={cardBase}>
+        {/* Expand button */}
+        <button
+          type="button"
+          aria-expanded={expanded}
+          aria-controls={panelId}
+          onClick={() => setExpanded((v) => !v)}
+          aria-label={expanded ? "Collapse" : "Expand"}
+          className="absolute right-4 top-4 inline-grid place-items-center h-9 w-9 rounded-full border-2 border-black bg-white text-black"
+        >
+          <svg
+            viewBox="0 0 20 20"
+            width="20"
+            height="20"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+          >
+            <line x1="4" y1="10" x2="16" y2="10" />
+            {!expanded && <line x1="10" y1="4" x2="10" y2="16" />}
+          </svg>
+        </button>
+
+        {/* Header */}
+        <div className="pr-12">
+          <h3 className="text-2xl md:text-3xl font-extrabold uppercase">
+            {label}
+          </h3>
+          <p className="mt-1 text-sm md:text-base text-neutral-600 uppercase">
+            {subtitle}
+          </p>
+        </div>
+
+        {/* Expanded */}
+        <div id={panelId} hidden={!expanded} className="mt-6">
+          <p className="leading-relaxed">
+            Choose what you need — from strategy to full identity systems.
+          </p>
+
+          <ul className="mt-3 border-t-2 border-black pt-3">
+            {items.map(([item, price, plus]) => (
+              <li
+                key={item}
+                className="flex justify-between py-2 text-sm md:text-base"
+              >
+                <span>{item}</span>
+                <span className="font-semibold">
+                  {price}
+                  {plus}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Book */}
+          <button
+            type="button"
+            aria-haspopup="dialog"
+            aria-expanded={isOpen}
+            onClick={onBookNow}
+            className={cn(
+              "mt-6 w-full px-5 py-3 inline-flex items-center justify-center gap-1",
+              "rounded-md border-2 border-black bg-white hover:bg-black hover:text-white",
+              "font-semibold",
+            )}
+          >
+            BOOK NOW <ArrowUpRight size={18} />
+          </button>
+        </div>
+
+        {!expanded && <div className="mt-8 h-28" />}
+      </article>
+    );
+  };
 
   return (
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
