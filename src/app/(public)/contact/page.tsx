@@ -7,13 +7,15 @@ import { X } from "lucide-react";
 import {
   PROPOSED_PROJECTS,
   PROJECT_REQUIREMENTS,
-  PROJECT_TAGS,
+  // PROJECT_TAGS,
   PriorityKey,
 } from "@/data/contact";
 import React from "react";
 import { cn } from "@/lib/utils/cn";
 import { ArrowUpRight } from "@/components/public/common/icons";
-import { motion } from "framer-motion";
+import type { ApiOk, ApiErr } from "@/lib/types/api";
+import type { CollabPayload, JobPayload, OfferPayload } from "@/lib/types/contact";
+// import { motion } from "framer-motion";
 // ----------------------
 // Styles
 // ----------------------

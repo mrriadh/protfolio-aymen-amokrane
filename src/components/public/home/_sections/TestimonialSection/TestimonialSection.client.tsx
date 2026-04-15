@@ -1,7 +1,6 @@
 "use client";
 
 import { Testimonial } from "@/lib/types/home";
-import Image from "next/image";
 import TestimonialCard from "../../_components/TestimonialCard/TestimonialCard";
 
 export default function TestimonialSectionClient({

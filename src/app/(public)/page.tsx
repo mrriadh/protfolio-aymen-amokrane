@@ -2,7 +2,7 @@
 // import EdgeLabel from "@/components/EdgeLabel";
 import HeroSectionServer from "@/components/public/home/_sections/HeroSection/HeroSection.server";
 import FeaturedProjectsServer from "@/components/public/home/_sections/FeaturedProjectsSection/FeaturedProjects.server";
-import SelectedClientsServer from "@/components/public/home/_sections/SelectedClientsSection/SelectedClients.server";
+// import SelectedClientsServer from "@/components/public/home/_sections/SelectedClientsSection/SelectedClients.server";
 
 import PageIntroTransition from "@/components/public/home/PageIntroTransition";
 import { ReactNode, Suspense } from "react";

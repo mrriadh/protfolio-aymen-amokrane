@@ -64,13 +64,13 @@ export const PROJECT_REQUIREMENTS: Record<
 };
 
 // Tags/keywords (formerly KEYWORDS)
-export const PROJECT_TAGS: Record<ProposedProjectKey, string[]> = {
-  cafe: ["brand kit", "menu", "packaging"],
-  esports: ["identity", "kit", "motion"],
-  fintech: ["ui", "branding", "web"],
-  event: ["visual system", "signage", "print"],
-  logistics: ["rebrand", "livery", "guidelines"],
-};
+// export const PROJECT_TAGS: Record<ProposedProjectKey, string[]> = {
+//   cafe: ["brand kit", "menu", "packaging"],
+//   esports: ["identity", "kit", "motion"],
+//   fintech: ["ui", "branding", "web"],
+//   event: ["visual system", "signage", "print"],
+//   logistics: ["rebrand", "livery", "guidelines"],
+// };
 
 // Static categories for "new project" form
 export const PROJECT_CATEGORIES = [
@@ -84,5 +84,5 @@ export const PROJECT_CATEGORIES = [
 // ---------- Backward-compat exports (keep your old imports working) ----------
 export const PRIORITY = PROPOSED_PROJECTS;
 export const REQUIREMENTS = PROJECT_REQUIREMENTS;
-export const KEYWORDS = PROJECT_TAGS;
+// export const KEYWORDS = PROJECT_TAGS;
 export type PriorityKey = ProposedProjectKey;

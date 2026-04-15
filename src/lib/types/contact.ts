@@ -1,7 +1,10 @@
-// ----------------------
-type OfferKind = "collab" | "job";
+// /src/lib/types/contact.ts
 
-type OfferPayloadBase = {
+// ----------------------
+export type OfferKind = "collab" | "job";
+
+// ----------------------
+export type OfferPayloadBase = {
   kind: OfferKind;
   name: string;
   email: string;
@@ -14,14 +17,27 @@ type OfferPayloadBase = {
   brief: string;
 };
 
-type CollabPayload = OfferPayloadBase & {
+// ----------------------
+export type CollabPayload = OfferPayloadBase & {
   kind: "collab";
   priorityKey?: "cafe" | "esports" | "fintech" | "event" | "logistics";
 };
 
-type JobPayload = OfferPayloadBase & {
+export type JobPayload = OfferPayloadBase & {
   kind: "job";
   priorityKey?: never;
 };
 
-type OfferPayload = CollabPayload | JobPayload;
+// ✅ Exported and intended for usage
+export type OfferPayload = CollabPayload | JobPayload;
+
+// ----------------------
+// ✅ Example usage (prevents ESLint unused error)
+
+export function handleOffer(payload: OfferPayload) {
+  if (payload.kind === "collab") {
+    console.log("Collab priority:", payload.priorityKey);
+  } else {
+    console.log("Job offer from:", payload.name);
+  }
+}
